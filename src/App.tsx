@@ -2,7 +2,7 @@ import React from "react";
 import { Provider } from "react-redux";
 import { store } from "./store";
 import UserTable from "./components/UserTable";
-import "./App.scss";
+import "./styles/app.scss";
 
 const App: React.FC = () => {
   return (

@@ -2,7 +2,7 @@ import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchUsers, setFilter } from "../store/userSlice";
 import { RootState } from "../store";
-import "./styles.scss";
+import "../styles/table.scss";
 
 // Reusable FilterInput Component
 const FilterInput: React.FC<{

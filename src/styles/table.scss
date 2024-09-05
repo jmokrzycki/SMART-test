@@ -1,38 +1,5 @@
-// _variables.scss
-$primary-color: #3498db;
-$secondary-color: #2ecc71;
-$background-color: #f5f7fa;
-$text-color: #34495e;
-$accent-color: #e74c3c;
-
-$border-radius: 8px;
-$box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-
-$breakpoint-sm: 576px;
-$breakpoint-md: 768px;
-$breakpoint-lg: 992px;
-
-// _mixins.scss
-@mixin respond-to($breakpoint) {
-  @media (min-width: $breakpoint) {
-    @content;
-  }
-}
-
-@mixin card-style {
-  background-color: #fff;
-  border-radius: $border-radius;
-  box-shadow: $box-shadow;
-}
-
-@mixin focus-style {
-  outline: none;
-  box-shadow: 0 0 0 3px rgba($primary-color, 0.3);
-}
-
-// styles.scss
-// @import 'variables';
-// @import 'mixins';
+@import "variables";
+@import "mixins";
 
 .user-table-container {
   max-width: 1200px;
@@ -140,7 +107,7 @@ $breakpoint-lg: 992px;
       }
     }
 
-    @media (max-width: $breakpoint-sm - 1) {
+    @media (max-width: $breakpoint-sm) {
       display: block;
 
       thead {
