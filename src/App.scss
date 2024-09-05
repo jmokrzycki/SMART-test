@@ -1,0 +1,199 @@
+// _variables.scss
+$primary-color: #3498db;
+$secondary-color: #2ecc71;
+$background-color: #f5f7fa;
+$text-color: #34495e;
+$accent-color: #e74c3c;
+
+$border-radius: 8px;
+$box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+
+$breakpoint-sm: 576px;
+$breakpoint-md: 768px;
+$breakpoint-lg: 992px;
+
+// _mixins.scss
+@mixin respond-to($breakpoint) {
+  @media (min-width: $breakpoint) {
+    @content;
+  }
+}
+
+@mixin card-style {
+  background-color: #fff;
+  border-radius: $border-radius;
+  box-shadow: $box-shadow;
+}
+
+@mixin focus-style {
+  outline: none;
+  box-shadow: 0 0 0 3px rgba($primary-color, 0.3);
+}
+
+// styles.scss
+// @import 'variables';
+// @import 'mixins';
+
+.user-table-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 40px 20px;
+  font-family: "Inter", sans-serif;
+  background-color: $background-color;
+  color: $text-color;
+
+  .title {
+    font-size: 2rem;
+    margin-bottom: 30px;
+    color: $primary-color;
+    font-weight: 700;
+  }
+
+  .search-section {
+    @include card-style;
+    padding: 20px;
+    margin-bottom: 30px;
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 20px;
+    transition: all 0.3s ease;
+
+    @include respond-to($breakpoint-sm) {
+      grid-template-columns: repeat(2, 1fr);
+    }
+
+    @include respond-to($breakpoint-md) {
+      grid-template-columns: repeat(4, 1fr);
+    }
+  }
+
+  .filter-input {
+    display: flex;
+    flex-direction: column;
+
+    label {
+      margin-bottom: 8px;
+      font-weight: 600;
+      color: $text-color;
+    }
+
+    input {
+      padding: 12px;
+      border: 1px solid #e0e0e0;
+      border-radius: $border-radius;
+      font-size: 14px;
+      transition: all 0.3s ease;
+
+      &:focus {
+        @include focus-style;
+        border-color: $primary-color;
+      }
+    }
+  }
+
+  .user-table {
+    width: 100%;
+    border-collapse: separate;
+    border-spacing: 0 10px;
+
+    th,
+    td {
+      padding: 15px;
+      text-align: left;
+    }
+
+    th {
+      font-weight: 600;
+      color: $primary-color;
+      border-bottom: 2px solid $primary-color;
+    }
+
+    tbody tr {
+      @include card-style;
+      transition: all 0.3s ease;
+
+      &:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
+      }
+    }
+
+    td {
+      &:first-child {
+        border-top-left-radius: $border-radius;
+        border-bottom-left-radius: $border-radius;
+      }
+
+      &:last-child {
+        border-top-right-radius: $border-radius;
+        border-bottom-right-radius: $border-radius;
+      }
+    }
+
+    a {
+      color: $secondary-color;
+      text-decoration: none;
+      transition: color 0.3s ease;
+
+      &:hover {
+        color: darken($secondary-color, 10%);
+      }
+    }
+
+    @media (max-width: $breakpoint-sm - 1) {
+      display: block;
+
+      thead {
+        display: none;
+      }
+
+      tbody,
+      tr,
+      td {
+        display: block;
+      }
+
+      tr {
+        margin-bottom: 20px;
+        @include card-style;
+      }
+
+      td {
+        text-align: right;
+        padding-left: 50%;
+        position: relative;
+
+        &:before {
+          content: attr(data-label);
+          position: absolute;
+          left: 15px;
+          width: 45%;
+          padding-right: 10px;
+          white-space: nowrap;
+          font-weight: 600;
+          text-align: left;
+          color: $primary-color;
+        }
+      }
+    }
+  }
+
+  .message {
+    text-align: center;
+    font-size: 1.1rem;
+    margin-top: 30px;
+    color: $accent-color;
+  }
+}
+
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border-width: 0;
+}
